@@ -1,7 +1,7 @@
 extends Node
 
 onready var levels = get_node("/root/Levels")
-onready var map = $TileMap
+onready var map = $Window/TileMap
 
 onready var tile_floor = map.tile_set.find_tile_by_name("floor")
 onready var tile_wall = map.tile_set.find_tile_by_name("wall")
@@ -15,7 +15,7 @@ var begin_x: int
 var begin_y: int
 var end_x: int
 var end_y: int
-var current_level = 0
+var current_level: int = 0
 var states = []
 
 class State:
@@ -63,7 +63,6 @@ func _input(event):
 					map.set_cell(position[0], position[1], tile_box)
 
 func move_player(h: int, v: int):
-	var is_moved = false
 	var position = get_player_position()
 	var cell = get_cell(position[0], position[1])
 	var remain: int
