@@ -38,3 +38,6 @@ func load_levels(filename: String):
 
 func get_level(index: int):
 	return levels[index]
+
+func count():
+	return levels.size()
