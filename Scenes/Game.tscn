@@ -3,12 +3,15 @@
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/Basic.tres" type="TileSet" id=2]
 
-[node name="Node2D" type="Node2D"]
+[node name="Game" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="ColorRect" type="ColorRect" parent="."]
-margin_right = 1024.0
-margin_bottom = 720.0
+[node name="Window" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="Background" type="ColorRect" parent="Window"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
 color = Color( 0.211765, 0.156863, 0.168627, 1 )
@@ -16,8 +19,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TileMap" type="TileMap" parent="."]
-scale = Vector2( 3, 3 )
+[node name="TileMap" type="TileMap" parent="Window"]
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 8, 8 )
 format = 1
