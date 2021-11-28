@@ -50,6 +50,8 @@ func _input(event):
 		previous_level()
 	if event.is_action_pressed("ui_page_down"):
 		next_level()
+	if event.is_action_pressed("ui_restart"):
+		load_level(current_level)
 	if event.is_action_pressed("ui_undo"):
 		if states.size() >= 1:
 			var state = states.pop_back()
