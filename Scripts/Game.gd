@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 onready var levels = get_node("/root/Levels")
 onready var map = $Window/TileMap
@@ -26,6 +26,21 @@ class State:
 func _ready():
 	levels.load_levels("res://Levels/Default.txt")
 	load_level(current_level)
+	
+	on_resized()
+	get_tree().get_root().connect("size_changed", self, "on_resized")
+	
+func on_resized():
+	var viewport_size = get_viewport_rect().size
+	var map_width = max(1, end_x - begin_x)
+	var map_height = max(1, end_y - begin_y)
+	var board_width = map_width * 8
+	var board_height = map_height * 8
+	var margin = min(viewport_size.x / 1.25 / map_width, viewport_size.y / 1.25 / map_height)
+	var scale = min((viewport_size.x - margin) / board_width, (viewport_size.y - margin) / board_height)
+
+	map.scale = Vector2(scale, scale)
+	map.position = Vector2((viewport_size.x - board_width * scale) / 2, (viewport_size.y - board_height * scale) / 2)
 	
 func _input(event):
 	if event.is_action_pressed("ui_left"):
@@ -209,6 +224,9 @@ func load_level(index: int):
 			match map.get_cell(x, y):
 				tile_goal, tile_box, tile_box_on:
 					fill_floor(x, y, used_cells.end.x, used_cells.end.y, true)
+					
+	# Force resize
+	on_resized()
 			
 func fill_floor(x: int, y: int, width: int, height: int, forced: bool):
 	var branch = forced
