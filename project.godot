@@ -8,10 +8,20 @@
 
 config_version=4
 
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Board",
+"language": "GDScript",
+"path": "res://Scripts/Board.gd"
+} ]
+_global_script_class_icons={
+"Board": ""
+}
+
 [application]
 
 config/name="GodotSokoban"
-run/main_scene="res://Scenes/Game.tscn"
+run/main_scene="res://Scenes/Board.tscn"
 config/icon="res://Sprites/AppIcon.png"
 
 [autoload]
