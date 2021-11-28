@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Scripts/Game.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/Basic.tres" type="TileSet" id=2]
+[ext_resource path="res://Sprites/Basic.tres" type="TileSet" id=1]
+[ext_resource path="res://Scripts/Board.gd" type="Script" id=2]
 
 [node name="Game" type="Node2D"]
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="Window" type="CanvasLayer" parent="."]
 layer = 0
@@ -20,6 +20,6 @@ __meta__ = {
 }
 
 [node name="TileMap" type="TileMap" parent="Window"]
-tile_set = ExtResource( 2 )
+tile_set = ExtResource( 1 )
 cell_size = Vector2( 8, 8 )
 format = 1
