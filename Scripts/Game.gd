@@ -36,6 +36,10 @@ func _input(event):
 		move_player(0, -1)
 	if event.is_action_pressed("ui_down"):
 		move_player(0, 1)
+	if event.is_action_pressed("ui_page_up"):
+		previous_level()
+	if event.is_action_pressed("ui_page_down"):
+		next_level()
 	if event.is_action_pressed("ui_undo"):
 		if states.size() >= 1:
 			var position = get_player_position()
@@ -123,8 +127,7 @@ func move_player(h: int, v: int):
 			if map.get_cell(x, y) == tile_box:
 				return
 	
-	current_level += 1
-	load_level(current_level)
+	next_level()
 	
 func get_cell(x: int, y: int):
 	if x < begin_x or y < begin_y or x >= end_x or y >= end_y:
@@ -150,6 +153,24 @@ func append_state(h: int, v: int, pushed: bool):
 	state.pushed = pushed
 	
 	states.append(state)
+	
+func previous_level():
+	if current_level >= 1:
+		current_level -= 1
+		load_level(current_level)
+		
+		return true
+		
+	return false
+	
+func next_level():
+	if current_level < levels.count() - 1:
+		current_level += 1
+		load_level(current_level)
+
+		return true
+		
+	return false
 	
 func load_level(index: int):
 	var level = levels.get_level(index)
