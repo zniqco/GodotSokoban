@@ -8,12 +8,11 @@ enum {
 var levels = []
 
 func load_levels(filename: String):
-	var file = File.new()
+	var file = FileAccess.open(filename, FileAccess.READ)
 	var state = NONE
 	var lines = []
 	
 	levels.clear()
-	file.open(filename, File.READ)
 	
 	while !file.eof_reached():
 		var line = file.get_line()

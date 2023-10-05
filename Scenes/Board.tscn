@@ -1,25 +1,23 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://br8idawq0xhpl"]
 
-[ext_resource path="res://Sprites/Basic.tres" type="TileSet" id=1]
-[ext_resource path="res://Scripts/Board.gd" type="Script" id=2]
+[ext_resource type="TileSet" uid="uid://c2o4b82hibcih" path="res://Sprites/Basic.tres" id="1"]
+[ext_resource type="Script" path="res://Scripts/Board.gd" id="2"]
 
 [node name="Game" type="Node2D"]
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="Window" type="CanvasLayer" parent="."]
 layer = 0
 
 [node name="Background" type="ColorRect" parent="Window"]
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 2
 size_flags_vertical = 2
-color = Color( 0.211765, 0.156863, 0.168627, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+color = Color(0.211765, 0.156863, 0.168627, 1)
 
 [node name="TileMap" type="TileMap" parent="Window"]
-tile_set = ExtResource( 1 )
-cell_size = Vector2( 8, 8 )
-format = 1
+texture_filter = 1
+tile_set = ExtResource("1")
+format = 2

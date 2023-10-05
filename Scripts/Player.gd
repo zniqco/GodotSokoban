@@ -16,7 +16,7 @@ func move_to(x: int, y: int):
 	self.x = x
 	self.y = y
 	
-	position = Vector2(x * map.cell_size.x, y * map.cell_size.y)
+	position = map.map_to_local(Vector2i(x, y))
 
 func _input(event):
 	if board != null:
